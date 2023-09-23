@@ -8,11 +8,6 @@ import {
 import User from "../../db/schemas/user";
 import { Router } from "express";
 
-function verifyEmail(email: string) {
-  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // eslint-disable-line
-  return regex.test(email);
-}
-
 export function userAuth(apiRouter: Router) {
   apiRouter.post("/register", async (req, res) => {
     //route for /register redirect
@@ -27,6 +22,7 @@ export function userAuth(apiRouter: Router) {
 
   apiRouter.post("/login", async (req, res) => {
     //route for /login redirect
+    console.log(req.body);
     await login(req.body.email, req.body.password, res);
   });
 
