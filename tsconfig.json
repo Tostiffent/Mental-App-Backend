@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": ["ES6"],
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "target": "ES6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "."
+  }
+}
