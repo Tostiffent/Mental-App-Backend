@@ -15,9 +15,8 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://jojochat.vercel.app",
-      "https://jojochat-git-dev-jojochat.vercel.app",
-      "https://jojochat-git-dev-jojochat.vercel.app/",
+      "https://moodscape-app.vercel.app/",
+      "https://moodscape-app.vercel.app",
     ],
     optionsSuccessStatus: 200,
   })
