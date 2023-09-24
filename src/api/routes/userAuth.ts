@@ -7,6 +7,7 @@ import {
 } from "../modules/userAuth";
 import User from "../../db/schemas/user";
 import { Router } from "express";
+import Forum from "../../db/schemas/forum";
 
 export function userAuth(apiRouter: Router) {
   apiRouter.post("/register", async (req, res) => {
@@ -44,6 +45,12 @@ export function userAuth(apiRouter: Router) {
     if (!req.headers.authorization) return res.status(400).send("NO AUTH");
     const data = await signout(req.headers.authorization);
     res.status(data.status).send(data.data);
+  });
+
+  apiRouter.get("/users", async (req, res) => {
+    const users = await User.find({}).select(["username", "user_id"]);
+    const posts = await Forum.find({});
+    res.status(200).send({ users, posts });
   });
 
   apiRouter.post("/:user_id/settings/username", async (req, res) => {
