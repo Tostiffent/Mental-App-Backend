@@ -1,6 +1,7 @@
 import express from "express";
 import Forum from "../../db/schemas/forum";
 import Comments from "../../db/schemas/comments";
+import generateUniqueId from "generate-unique-id";
 
 const forumRouter = express.Router();
 
@@ -48,10 +49,36 @@ forumRouter.get("/:id", async (req, res) => {
 });
 
 forumRouter.post("/create", async (req, res) => {
+  const post_id = generateUniqueId({ length: 16, useLetters: false });
+  const post = {
+    post_id,
+    author: req.body.user_id,
+    createdAt: new Date(),
+    content: req.body.content,
+    title: req.body.title,
+    comments: [],
+  };
+  await new Forum(post).save();
   // get dm info
   //const data = await Posts.findOne({ post_id: req.params.id });
   //if (data) res.status(201).send(data);
   //else res.status(400).send({ data: "not found" });
+});
+
+forumRouter.post("/comment", async (req, res) => {
+  // get dm info
+  const message_id = generateUniqueId({ length: 16, useLetters: false });
+  const commentData = {
+    post_id: req.body.id,
+    author: req.body.user_id,
+    content: req.body.comment,
+    message_id,
+    _id: message_id,
+    reply: null,
+    parent: null,
+    createdAt: new Date(),
+  };
+  await new Comments(commentData).save();
 });
 
 export default forumRouter;

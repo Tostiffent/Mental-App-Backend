@@ -7,8 +7,8 @@ const commentSchema = new Schema({
   author: { type: Schema.Types.Mixed, ref: "user", required: true },
   content: { type: String, require: true },
   createdAt: { type: Date, require: true, default: new Date() },
-  reply: { type: Schema.Types.Mixed, ref: "comments", required: true },
-  parent: { type: Schema.Types.Mixed, ref: "comments", required: true },
+  reply: { type: Schema.Types.Mixed, ref: "comments" },
+  parent: { type: Schema.Types.Mixed, ref: "comments" },
 });
 
 const Comments = model("comments", commentSchema);
