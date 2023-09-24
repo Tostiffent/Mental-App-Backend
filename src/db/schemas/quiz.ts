@@ -5,7 +5,7 @@ const quizSchema = new Schema({
   title: { type: String, required: true },
   desc: { type: String, require: true },
   questions: [{ type: String }],
-  results: [{ type: Schema.Types.Mixed }],
+  results: { type: Schema.Types.Mixed },
   img: { type: String, require: false },
 });
 
